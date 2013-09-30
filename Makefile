@@ -1,11 +1,12 @@
-RUSTC := rustc
-RUSTC_OPTS := --link-args="-lpcre"
-SOURCE := pcre.rc pcre.rs consts.rs
+RUSTC := rust build
+RUSTC_OPTS :=
+SOURCE := src/libpcre/lib.rs
 
 all: build
 
 build: $(SOURCE)
-	$(RUSTC) $(RUSTC_OPTS) --lib pcre.rc
+	mkdir build
+	$(RUSTC) $(RUSTC_OPTS) src/libpcre/lib.rs --out-dir=build
 
 test: clean
 	$(RUSTC) $(RUSTC_OPTS) -L . --test pcre.rc -o pcretest~
